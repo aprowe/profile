@@ -15,6 +15,4 @@
 /log/*.log
 /tmp
 
-/*.mp4
-/app/assets/images/vsynth.mp4
 /public/assets
