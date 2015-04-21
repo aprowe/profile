@@ -29,10 +29,12 @@ gem 'spring',        group: :development
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
 
+gem 'capistrano-passenger'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
-gem 'requirejs-rails'
+#gem 'requirejs-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'

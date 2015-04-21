@@ -37,6 +37,8 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-passenger (0.0.5)
+      capistrano (~> 3.0)
     capistrano-rails (1.1.2)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -111,8 +113,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    requirejs-rails (0.9.5)
-      railties (>= 3.1.1)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     sass (3.2.19)
@@ -167,6 +167,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
+  capistrano-passenger
   capistrano-rails
   coffee-rails (~> 4.0.0)
   compass
@@ -179,7 +180,6 @@ DEPENDENCIES
   momentjs-rails
   passenger
   rails (= 4.1.6)
-  requirejs-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   slim-rails
