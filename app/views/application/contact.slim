@@ -1,0 +1,79 @@
+	
+- if @submitted
+	.gap-100
+	.gap-50
+	h2.center.color4-text.thanks Thanks!
+	h1.center.color4-text
+		i.fa.fa-thumbs-up
+- else 
+	-@title = 'Contact Me'
+	form.form method='POST'
+		.row
+			input#name name='name' placeholder='Name'
+		.row
+			input#email name='email' placeholder='Email'
+		.row
+			textarea#message name='message' placeholder='Message'
+		.row
+			input#submit type='submit'
+
+		.row
+			#error-message
+
+
+sass:
+	h1 
+		text-align: center
+
+	.form
+		max-width: 600px
+		margin: auto
+
+		input,
+		textarea
+			box-sizing: border-box
+			display: inline-block
+			font-family: Montserrat
+			width: 100%
+			padding: 10px
+			margin: 5px
+			border-radius: 2px
+			border: 1px solid rgba(black, 0.2)
+
+			font-size: 1.5em
+
+			&.error
+				border-color: red
+
+
+
+		textarea 
+			font-size: 1.3em
+			height: 5em
+			resize: none
+
+		#error-message
+			font-size: 80%
+
+coffee:
+	$('#submit').click (e)->
+		$('.error').removeClass('error')
+
+		fields = ['#name', '#message', '#email']
+		invalid = []
+
+		email = $('#email').val()
+		invalid.push '#email' unless email.match /^[a-zA-Z0-9._%+-]*@[a-zA-Z0-9]*[\.[a-zA-Z0-9]*]*[a-zA-Z0-9]$/
+
+		for f in fields
+			continue if $(f).val()
+			invalid.push f
+
+		e.preventDefault() if invalid.length > 0
+
+		$(f).addClass('error') for f in invalid
+
+
+
+
+

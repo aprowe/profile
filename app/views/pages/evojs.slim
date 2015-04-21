@@ -1,0 +1,138 @@
+- @title = 'evo.js'
+
+
+p 
+    | evo.js is an genetic algorithm tool written in coffeescript for node and browsers. It includes classes for simple Feed Forward
+    |  and Compositional Pattern Producing Networks. A focus for the project was creating an easy to use API.
+
+a href='http://github.com/arowe/evo' 
+    i.fa.fa-github   
+    |  view on github
+h4 Example Simluation
+p Each square respresents an organism. The more the square camoflauges into the background, the higher chance it has of surviving. Each generation, half of the organisms die, and the remaining half breed to bring the population back up to full. The offspring have a small percent change of mutating to a random color. Click 'Next Generation' to begin!
+
+
+/ p On this project I focused on a couple things:
+/ ol
+/   li 
+/       h4 Clean API. <br>
+/       |  After working libraries like <a href='phsycsjs'>physicsJS</a> and <a href='pasd'>c3</a>,
+/       |  I got inspired to write a library that has a simple, clean api.
+/   li 
+/       h4 Managed Build process. <br>
+/       |  With a clean API, you want a project that is easy to fork and work with. 
+/       |  I learned how to use grunt for this project, and learned about package files and dependencies.
+
+#example
+
+.gap-20
+a.button.color3#new-color href='#' new color
+a  #{ }
+a.button.color3#generation href='#' next generation  
+span style="margin-left: 10px"
+    span Generation:   
+    span#gen  1
+
+h4#show-code
+    a href='#'
+        | Show Code 
+        .fa.fa-angle-down
+pre style='font-size: 80%'
+    code#code style='display:none; width: 100%'
+
+
+.gap-50
+a.github-button href='http://github.com/aprowe/evo'
+    i.fa.fa-github
+    |  View evo on Github
+
+.gap-50
+sass:
+    .spawn
+        box-sizing: border-box
+        width: 5%
+        padding-top: 5%
+
+        display: inline-block
+        margin: 5px
+
+    #example
+        box-sizing: border-box
+        padding: 10px
+        border-radius: 3px
+
+#example-code
+    javascript:
+        var background = [];
+
+        var pool = evo.pool({
+            n_genes: 3, // number of genes
+            size: 100,  // Number of organisms
+            autospawn: true, 
+            ratios: {
+                top:    0.4,
+                cross:  0.5,
+                mutate: 0.1,
+                fresh:  0.0,
+                meld:   0.1,
+                random: 0.0,
+            },
+
+            // Function to create an object
+            on_spawn: function(genes) {
+                return [
+                    Math.abs(Math.round(genes[0]*255)),
+                    Math.abs(Math.round(genes[1]*255)),
+                    Math.abs(Math.round(genes[2]*255))
+                ];
+            },
+
+            on_breed: function() { 
+                $('.spawn').remove();
+
+                $('#gen').html(this.generation);
+
+                for (var g in this.pool) {
+                    var spawn = this.spawn(this.pool[g]);
+
+                    $('<'+'div class="spawn"><'+'/div>')
+                        .appendTo('#example')
+                        .css('background', "rgb("+spawn.join()+")");
+                }
+
+            },
+
+            on_run: function(spawn) {
+                spawn.score -= Math.abs(spawn[0] - background[0]);
+                spawn.score -= Math.abs(spawn[1] - background[1]);
+                spawn.score -= Math.abs(spawn[2] - background[2]);
+            }
+        });
+
+        $('#new-color').click(function(e){
+            e.preventDefault()
+
+            background = [
+                Math.abs(Math.round(Math.random()*255)),
+                Math.abs(Math.round(Math.random()*255)),
+                Math.abs(Math.round(Math.random()*255))
+            ];
+
+            $('#example').css({
+                background: 'rgb('+background.join()+')'
+            });
+        }).click();
+
+        $('#generation').click(function(e){
+            e.preventDefault();
+            pool.run(1);
+        }).click();
+
+coffee:
+    $('#code').html $('#example-code script').html()
+    hljs.initHighlightingOnLoad()
+
+    $('#show-code').click (e)->
+        e.preventDefault()
+        $('#code').slideToggle()
+        $(this).find('.fa').toggleClass 'fa-angle-down fa-angle-up'

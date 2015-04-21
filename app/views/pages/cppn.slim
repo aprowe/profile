@@ -1,0 +1,34 @@
+- @title = 'CPPNs'
+h5 Compositional Pattern Producing Networks
+
+p CPPNs are similar to Artificial Neural Networks, but with different activation functions. Whereas ANNs use odd functions such as tanh or a step function, CPPNs use any function to generate recurring patterns. It creates images similarly to <a href='http://picbreeder.com'>picbreeder.com</a>. Read more about CPPNs on <a href='http://en.wikipedia.org/wiki/Compositional_pattern-producing_network'>Wikipedia.</a>
+
+p 
+	| All these images were randomly generated using the CPPN class in my project
+	a href='/page/evojs'   evo.js. 
+
+
+
+.images
+	- (1..44).to_a.reverse!.each do |i|
+		a href='/assets/full_cppn/#{i}.png' style='background-image: url(/assets/cpspn/#{i}.png)'
+
+.gap-50
+
+sass:
+	.images a
+		box-sizing: border-box
+		vertical-align: middle
+
+		background-size: 100%
+		background-repeat: no-repeat
+		overflow: hidden
+
+		width: 24%
+		height: 130px
+		display: inline-block
+
+	@media (max-width: 850px)
+		.images a 
+			width: 49%
+			max-height: 260px

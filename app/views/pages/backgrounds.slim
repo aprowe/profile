@@ -1,0 +1,54 @@
+- @title = 'Wallpapers'
+
+p Here are some wallpapers I have made using Illustrator. My favorite is the one with the sheep. Click for full-size
+
+a.img-link href='/assets/backgrounds/fabrix.png'
+	h3.screen Wool Appreciation
+	img width='100%' src='/assets/backgrounds/fabrix.png'
+	
+a.img-link href='/assets/backgrounds/brix.png'
+	h3.screen Toppling Tower
+	img width='100%' src='/assets/backgrounds/brix.png'
+
+a.img-link href='/assets/backgrounds/adtime.png'
+	h3.screen Simple Time
+	img width='100%' src='/assets/backgrounds/adtime.png'
+	
+a.img-link href='/assets/backgrounds/glitch.png'
+	h3.screen Glitch Thread
+	img width='100%' src='/assets/backgrounds/glitch.png'
+
+.gap-100
+sass:
+	.img-link
+		display: inline-block
+		position: relative
+		width: 50%
+
+	@media (max-width: 800px)
+		.img-link 
+			width: 100%
+
+
+	.screen
+		display: inline
+		position: absolute
+		width: 100%
+		height: 100%
+		top: 0px
+		opacity: 0.0
+		text-align: center
+		color: black
+
+		line-height: 200px
+
+		transition: all .2s
+
+		margin: 0
+
+		&:hover
+			background: rgba(white, 0.5)
+			opacity: 1.0
+
+
+		

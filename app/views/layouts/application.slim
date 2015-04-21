@@ -1,0 +1,28 @@
+doctype html
+html
+head
+	title Profile
+	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+	= javascript_include_tag 'application', 'data-turbolinks-track' => true
+	= csrf_meta_tags
+body
+	.header
+		a.color2-text.hover1 href='/' ALEX
+		a.color1-text.hover2 href='/' ROWE
+	a.back href='/'
+		.fa.fa-arrow-circle-o-left
+		| back
+	.content
+		- if @title
+			h1.title #{@title}
+		= yield
+	.gap-50
+	.footer
+		a.about href='about' ABOUT
+		a.contact href='contact' CONTACT
+		a.github.hover4 href='http://github.com/aprowe' 
+			i.fa.fa-github
+			|  Github
+		.clear
+
+
