@@ -35,7 +35,9 @@ set :pty, true
 set :keep_releases, 2
 
 set :rails_env, "production"
+
 set :user, "ubuntu"
+
 server "ubuntu@54.183.86.69"
 
 namespace :deploy do
