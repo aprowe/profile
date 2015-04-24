@@ -29,7 +29,6 @@ gem 'spring',        group: :development
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
 
-gem 'capistrano-passenger'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
@@ -57,7 +56,9 @@ gem 'passenger'
 
 gem 'mail'
 
+gem 'capistrano-rails'
+gem 'capistrano-passenger'
+gem 'capistrano-rvm'
 
-group :development do
-  gem 'capistrano-rails'
-end
+# group :development do
+# end

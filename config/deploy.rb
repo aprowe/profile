@@ -14,13 +14,13 @@ set :deploy_to, '/home/ubuntu/Profile'
 set :scm, :git
 
 # Default value for :format is :pretty
-set :format, :pretty
+# set :format, :pretty
 
 # Default value for :log_level is :debug
 # set :log_level, :debug
 
 # Default value for :pty is false
-set :pty, true
+# set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
@@ -37,16 +37,24 @@ set :keep_releases, 2
 set :rails_env, "production"
 
 set :user, "ubuntu"
-
-server "ubuntu@54.183.86.69"
+role :web, 'ubuntu@54.183.86.69'
+role :db, 'ubuntu@54.183.86.69'
+role :app, 'ubuntu@54.183.86.69'
 
 namespace :deploy do
+	task :compile do
+	    on roles(:web), in: :groups, limit: 3, wait: 10 do
+	      within release_path do
+		  	execute "ls"
+	      end
+		end
+	end
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       # within release_path do
-      #   execute :rake, 'cache:clear'
+        # execute :rake, 'cache:clear'
       # end
     end
   end
