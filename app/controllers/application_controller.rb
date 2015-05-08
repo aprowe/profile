@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
   		email = params[:email]
   		name = params[:name]
   		message = params[:message]
-  		# Mail.deliver do
-  		#   from email
-  		#   to 'aprowe@ucsc.edu'
-  		#   subject "Message from #{name}"
-  		#   body message
-  		# end
+  		Mail.deliver do
+  		  from email
+  		  to 'aprowe@ucsc.edu'
+  		  subject "Message from #{name}"
+  		  body message
+  		end
 
   		@submitted = true
   	end
